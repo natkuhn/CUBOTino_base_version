@@ -195,7 +195,7 @@ def get_settings(settings):
         s_pwm_close_max = 103     # max slider value for close PWM setting (unit/1024*20 ms)
     
     if b_srv_pw_range.lower() == 'small':
-        s_pwm_ccw_min = 40        # min slider value for CCW PWM setting (unit/1024*20 ms)
+        s_pwm_ccw_min = 30        # min slider value for CCW PWM setting (unit/1024*20 ms)
         s_pwm_ccw_max = 62        # max slider value for CCW PWM setting (unit/1024*20 ms)
         s_pwm_home_min = 63       # min slider value for Home PWM setting (unit/1024*20 ms)
         s_pwm_home_max = 87       # max slider value for Home PWM setting (unit/1024*20 ms)
