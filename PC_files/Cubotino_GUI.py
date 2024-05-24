@@ -91,6 +91,8 @@ print()
 import Cubotino_webcam as cam           # recognize cube status via a webcam (by Andrea Favero)
 import Cubotino_moves as cm             # translate a cube solution into CUBOTino robot moves (by Andrea Favero)
 
+import Cubotino_alt_moves as am         # translate into alternate robot moves (by Nat Kuhn)
+
 
 import sys                                            # library import to check if another lybrary is already imported
 if 'solver' in sys.modules or 'cm' in globals():      # case the library 'solver'is already imported
@@ -735,6 +737,11 @@ def solve():
         for key in range(len(cube_defstr.strip())):          # iteration over the cube status string
             cube_status[key]=cube_defstr[key]                # dict generation
         previous_move=0                                      # previous move set to zero
+
+        alt_robot_moves = am.robot_moves(solution)
+        show_text(f'Alternate robot moves: {alt_robot_moves}\n')       # alternate robot moves string is printed on the text window
+        if debug:                                        # case the debug checkcutton is selected
+            print(f'Alternate robot moves: {alt_robot_moves}\n')       # feedback is printed to the terminal
 
     gui_f2.update()                     # GUI f2 part is updated, to release eventual clicks on robot button
     b_robot["state"] = "active"         # GUI robot button is activated after solve() function
@@ -2241,11 +2248,17 @@ gui_prog_label_text = tk.StringVar()
 gui_prog_label = tk.Label(gui_robot_label, height=1, width=5, textvariable=gui_prog_label_text, font=("arial", 12), bg="#E6E6E6")
 gui_prog_label.grid(column=1, sticky="e", row=12, padx=10, pady=10)
 
-b_settings = tk.Button(gui_robot_label, text="Settings window", height=1, width=26, state="disable",
+b_settings = tk.Button(gui_robot_label, text="Settings window", height=1, width=13, state="disable",
                        command= lambda: show_window(settingWindow))
 b_settings.configure(font=("Arial", "11"))
-b_settings.grid(column=0, row=13, columnspan=2,  padx=10, pady=5)
+b_settings.grid(column=0, row=13,  padx=10, pady=5)
 
+# checkbox for alternate robot moves
+gui_alt_moves_var = tk.BooleanVar()
+cb_alt_moves=tk.Checkbutton(gui_robot_label, text="alt moves", variable=gui_alt_moves_var)
+cb_alt_moves.configure(font=("Arial", "10"))
+cb_alt_moves.grid(column=1, row=13, sticky="ew", padx=5, pady=5)
+gui_alt_moves_var.set(0)
 
 
 
