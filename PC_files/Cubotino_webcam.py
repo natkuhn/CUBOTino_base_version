@@ -77,7 +77,7 @@ def webcam(cam_num, cam_width=640, cam_height=360):
     global camera
     
     cam_num=int(cam_num)          # cam_num =0 is typically the one integrated on laptops
-    camera = cv2.VideoCapture(cam_num, cv2.CAP_DSHOW)         # camera object
+    camera = cv2.VideoCapture(cam_num, cv2.CAP_ANY)         # camera object
   
     camera_width_resolution = int(cam_width)                  # laptop camera, width resolution setting
     camera_height_resolution = int(cam_height)                # laptop camera, height resolution setting
